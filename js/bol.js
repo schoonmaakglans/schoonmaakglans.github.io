@@ -23,15 +23,28 @@ export const BOL = {
   },
 };
 
-const wrap = (url) =>
+const wrap = (url, sub) =>
   BOL.partnerId
-    ? `https://partner.bol.com/click/click?p=2&t=url&s=${encodeURIComponent(BOL.partnerId)}&f=TXL&url=${encodeURIComponent(url)}&name=${encodeURIComponent(BOL.name)}`
+    ? `https://partner.bol.com/click/click?p=2&t=url&s=${encodeURIComponent(BOL.partnerId)}&f=TXL&url=${encodeURIComponent(url)}&name=${encodeURIComponent(BOL.name)}&subid=${encodeURIComponent(sub)}`
     : url;
+
+/* Label per knop, zodat je in bol (Rapportages > Promotiemiddel) ziet welk product en welke plek klikt.
+   Voorbeeld: karcher-kamer, dyson-shop, robot-product, motionflow-balk */
+const spot = (a) => {
+  if (a.dataset.spot) return a.dataset.spot;
+  if (a.closest(".room-card, .room")) return "kamer";
+  if (a.closest(".tile")) return "shop";
+  if (a.closest(".mbar")) return "balk";
+  if (a.closest(".alt")) return "alternatief";
+  if (location.pathname.includes("product.html")) return "product";
+  if (location.pathname.includes("/tips/")) return "tip-" + location.pathname.split("/").pop().replace(".html", "");
+  return "home";
+};
 
 document.querySelectorAll("[data-bol]").forEach((a) => {
   const url = BOL.links[a.dataset.bol];
   if (!url) return;
-  a.href = wrap(url);
+  a.href = wrap(url, a.dataset.bol + "-" + spot(a));
   a.target = "_blank";
   a.rel = "sponsored nofollow noopener";
 });
