@@ -1,6 +1,6 @@
 <!doctype html><meta charset="utf-8"><meta name="robots" content="noindex"><title>Glans</title>
 <script>
-(async()=>{const f=new URLSearchParams(location.search).get("f");if(!f||!/^[\w-]+\.(mp4|jpg|png)$/.test(f)||!window.opener)return;
+(async()=>{const f=new URLSearchParams(location.search).get("f");if(!f||!/^[\w-]+\.(mp4|jpg|png)$/.test(f))return;const t=window.opener||(window.parent!==window?window.parent:null);if(!t)return;
 const b=await (await fetch("../media/social/"+f)).arrayBuffer();
-window.opener.postMessage({glans:f,buf:b},"*");document.body.textContent="Klaar";setTimeout(()=>close(),800);})();
+t.postMessage({glans:f,buf:b},"*");document.body.textContent="Klaar";setTimeout(()=>close(),800);})();
 </script>
