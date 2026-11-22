@@ -1,0 +1,72 @@
+/* GLANS · losse figuurtjes: vieze beestjes die worden weggeveegd, schone sterretjes die tevoorschijn springen */
+.crit-layer{position:absolute;inset:0;pointer-events:none;z-index:2}
+.crit{position:absolute;transform:translate(-50%,-50%) rotate(var(--r,0deg));transition:transform .7s cubic-bezier(.4,0,.6,1) var(--sd,0s),opacity .5s ease var(--sd,0s);filter:drop-shadow(0 10px 12px rgba(0,0,0,.28))}
+.crit img{display:block;width:100%;height:auto;animation:crit-bob 2.4s ease-in-out infinite;animation-delay:var(--bd,0s)}
+@keyframes crit-bob{0%,100%{transform:translateY(0) rotate(0)}30%{transform:translateY(-7%) rotate(-4deg)}60%{transform:translateY(2%) rotate(3deg)}}
+/* weggeveegd: ze vliegen mee met de veeg naar rechts */
+.swept .crit{transform:translate(160%,-80%) rotate(calc(var(--r,0deg) + 75deg)) scale(.5);opacity:0}
+/* schoon sterretje springt erin */
+.hero-star{position:absolute;z-index:3;width:var(--w,15%);left:var(--x,80%);top:var(--y,14%);transform:translate(-50%,-50%) scale(0) rotate(-40deg);transition:transform .8s cubic-bezier(.3,1.7,.5,1);filter:drop-shadow(0 12px 16px rgba(0,0,0,.25));pointer-events:none}
+.hero-star img{display:block;width:100%;animation:star-float 3s ease-in-out infinite}
+@keyframes star-float{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-8%) rotate(5deg)}}
+.cleaned .hero-star{transform:translate(-50%,-50%) scale(1) rotate(0)}
+/* sterretje bij het product */
+.product{position:relative}
+.prod-star{position:absolute;right:-18px;top:-26px;width:74px;z-index:4;transform:scale(0) rotate(-40deg);transition:transform .8s cubic-bezier(.3,1.7,.5,1) .2s;pointer-events:none;filter:drop-shadow(0 10px 14px rgba(0,0,0,.25))}
+.prod-star img{display:block;width:100%;animation:star-float 3s ease-in-out infinite}
+.step.cleaned .prod-star{transform:scale(1) rotate(8deg)}
+/* meeloper langs de stippellijn */
+.walker{position:absolute;left:31px;top:0;width:58px;margin-left:-29px;z-index:5;pointer-events:none;transition:top .25s linear;filter:drop-shadow(0 8px 10px rgba(0,0,0,.25))}
+.walker img{display:block;width:100%;animation:walk 0.9s ease-in-out infinite}
+.walker img.swap{animation:walk .9s ease-in-out infinite,pop .45s cubic-bezier(.3,1.7,.5,1)}
+@keyframes walk{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-10%) rotate(6deg)}}
+@keyframes pop{0%{scale:.3}100%{scale:1}}
+@media (max-width:860px){.walker{left:21px;width:44px;margin-left:-22px}.prod-star{width:56px;right:-8px;top:-22px}}
+@media (prefers-reduced-motion:reduce){.crit img,.hero-star img,.prod-star img,.walker img{animation:none}}
+/* bescherm de figuurtjes tegen de regels voor de kamerfoto's */
+.crit-layer img,.prod-star img,.walker img{position:static!important;inset:auto!important;width:100%!important;height:auto!important;aspect-ratio:auto!important;object-fit:contain!important;clip-path:none!important;max-width:none}
+/* labels bij de video: direct wisselen, nooit een lege witte balk */
+.scene .tag-dirty{color:#0d2633}
+.scene.has-video .tag-dirty,.scene.has-video .tag-clean{transition:none!important}
+.scene.has-video.done:not(.ended) .tag-dirty{opacity:0}
+.product .aff{display:block;text-align:center;font:500 11px/1.3 var(--text);color:#7a8b93;margin-top:4px}
+@media (max-width:860px){.product .aff{grid-column:2}}
+/* video in de stap: labels volgen 'playing'/'ended' (niet meer de scroll-veeg) */
+.scene.has-video.done:not(.ended) .tag-dirty{opacity:1}
+.scene.has-video.playing .tag-dirty{opacity:0}
+.scene.has-video .again{position:absolute;right:14px;bottom:14px;z-index:4;border:0;border-radius:999px;background:rgba(255,255,255,.92);color:#0d2633;font:700 13px/1 var(--text);padding:9px 13px;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .3s}
+.scene.has-video.ended .again{opacity:1;pointer-events:auto}
+/* gratis schema (e-mail) */
+.freebie{padding-top:10px}
+.free-card{display:grid;grid-template-columns:1.4fr 1fr;gap:24px;align-items:center;background:linear-gradient(135deg,#0b1f2a,#12404a);color:#fff;border-radius:34px;padding:clamp(26px,5vw,52px);overflow:hidden}
+.free-card .eyebrow{color:#7fe0d8}
+.free-card h2{color:#fff;font-size:clamp(30px,3.8vw,48px);text-align:left}
+.free-txt>p{color:#cfe3e6;font-size:18px}
+.free-form{display:grid;grid-template-columns:1fr auto;gap:10px;margin-top:18px}
+.free-form input[type=email]{font:400 16px/1.4 var(--text);padding:15px 16px;border:0;border-radius:999px;min-width:0}
+.free-form .btn{background:#ffc21a;color:#0b1f2a}
+.free-form .btn .arrow{background:#0b1f2a;color:#fff}
+.free-form .check{grid-column:1/-1;display:flex;gap:10px;align-items:flex-start;font:500 14px/1.4 var(--text);color:#cfe3e6}
+.free-form .check a{color:#fff}
+.free-form .check input{width:18px;height:18px;margin-top:1px}
+.hp,.sr{position:absolute;left:-9999px}
+.free-art{position:relative;height:220px}
+.free-art img{position:absolute;width:42%;filter:drop-shadow(0 12px 14px rgba(0,0,0,.35));animation:peek 4.8s ease-in-out infinite}
+.free-art img:nth-child(1){left:2%;top:30%}.free-art img:nth-child(2){left:34%;top:0;animation-delay:1.4s}.free-art img:nth-child(3){right:0;top:38%;animation-delay:2.8s}
+.foot-links a{color:#fff}
+@media (max-width:760px){.freebie{padding-top:70px}.free-card{grid-template-columns:1fr;position:relative;overflow:visible}.free-form{grid-template-columns:1fr}.free-art{position:absolute;right:14px;top:-62px;width:62%;height:90px;z-index:0}.free-art img{width:34%}.free-art img:nth-child(1){left:0;top:24%}.free-art img:nth-child(2){left:33%;top:0}.free-art img:nth-child(3){right:0;top:28%}.free-txt{position:relative;z-index:1}}
+
+/* zachte pop-up */
+.popup{position:fixed;right:20px;bottom:20px;z-index:60;width:min(360px,calc(100vw - 32px));background:#fff;border-radius:24px;padding:22px 22px 20px;box-shadow:0 30px 70px -20px rgba(11,31,42,.45);transform:translateY(30px);opacity:0;transition:transform .45s cubic-bezier(.2,.8,.1,1),opacity .35s}
+.popup.on{transform:none;opacity:1}
+.popup .eyebrow{margin:0 0 6px;color:#0e9a95}
+.popup h3{font-family:var(--display);font-size:24px;margin:0 0 6px;letter-spacing:-.02em}
+.popup p{margin:0 0 12px;color:#4d6470;font-size:15px}
+.popup form{display:grid;gap:10px}
+.popup input[type=email]{font:400 16px/1.4 var(--text);padding:13px 14px;border:2px solid #e2e9ea;border-radius:14px}
+.popup .check{display:flex;gap:8px;align-items:flex-start;font:500 13px/1.35 var(--text);color:#4d6470}
+.popup .check input{width:17px;height:17px;margin-top:1px}
+.popup .btn{width:100%}
+.pop-x{position:absolute;right:10px;top:10px;width:34px;height:34px;border-radius:50%;border:0;background:#f1f4f5;font:700 20px/1 var(--text);cursor:pointer;color:#0b1f2a}
+.pop-art{position:absolute;right:46px;top:-34px;width:66px;filter:drop-shadow(0 8px 10px rgba(0,0,0,.25));animation:peek 4.8s ease-in-out infinite}
+@media (max-width:600px){.popup{left:16px;right:16px;bottom:12px;width:auto}}

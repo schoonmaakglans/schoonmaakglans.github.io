@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Product · Glans</title>
+<meta name="description" content="Foto's, uitleg, reviews en waar je op let, voordat je naar bol gaat.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0b1f2a;--ink-soft:#4d6470;--line:#e4e9ea;--bg:#f7f6f2;--c:#13b5ae;--tint:#dff6f4;--on:#fff;--star:#f5a400;
+  --display:"Bricolage Grotesque",system-ui,sans-serif;--text:"Figtree",system-ui,sans-serif;--ease:cubic-bezier(.2,.8,.1,1)}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(180deg,var(--tint) 0,var(--bg) 520px);color:var(--ink);font:400 17px/1.6 var(--text);-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);font-weight:800;letter-spacing:-.035em;margin:0;line-height:1.02}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.top{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:18px;height:66px}
+.logo{display:flex;align-items:center;gap:8px;font:800 27px/1 var(--display);letter-spacing:-.045em;text-decoration:none}
+.logo svg{width:22px;height:22px}
+.back{font:600 15px/1 var(--text);text-decoration:none;padding:10px 12px;border-radius:999px}
+.back:hover{background:var(--tint)}
+.top .ad{margin-left:auto;font:600 12px/1 var(--text);color:var(--ink-soft);text-decoration:none}
+.top .back{white-space:nowrap}
+@media (max-width:560px){.top .ad{display:none}.top .back{margin-left:auto}}
+.crumbs{font:600 14px/1 var(--text);color:var(--ink-soft);padding:22px 0 0}
+.crumbs a{text-decoration:none}
+.main{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);padding:22px 0 60px;align-items:start}
+.main>*{min-width:0}
+@media (max-width:900px){.main{grid-template-columns:minmax(0,1fr)}}
+
+/* diashow */
+.gallery{position:sticky;top:86px}
+@media (max-width:900px){.gallery{position:static}}
+.stage{position:relative;background:#fff;border-radius:30px;overflow:hidden;box-shadow:0 40px 70px -50px rgba(11,31,42,.55);aspect-ratio:1/1}
+.track{display:flex;height:100%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;scroll-behavior:smooth}
+.track::-webkit-scrollbar{display:none}
+.track figure{flex:0 0 100%;margin:0;height:100%;min-height:0;overflow:hidden;display:grid;place-items:center;scroll-snap-align:center;padding:4%}
+.track img{width:100%;height:100%;object-fit:contain;min-height:0}
+.nav{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;border:0;background:#fff;box-shadow:0 10px 24px -10px rgba(0,0,0,.4);font:700 20px/1 var(--text);cursor:pointer;display:grid;place-items:center;transition:transform .2s}
+.nav:hover{transform:translateY(-50%) scale(1.08)}
+.nav.prev{left:14px}.nav.next{right:14px}
+.count{position:absolute;right:16px;bottom:14px;font:700 13px/1 var(--text);background:rgba(11,31,42,.75);color:#fff;padding:7px 10px;border-radius:999px}
+.thumbs{display:flex;gap:10px;margin-top:14px;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
+.thumbs button{flex:0 0 72px;height:72px;border-radius:14px;border:2px solid transparent;background:#fff;padding:4px;cursor:pointer;opacity:.65;transition:opacity .2s,border-color .2s}
+.thumbs button.on{border-color:var(--c);opacity:1}
+.thumbs img{width:100%;height:100%;object-fit:contain}
+.photo-note{font-size:12px;color:var(--ink-soft);margin-top:8px}
+
+/* info */
+.badge{display:inline-flex;gap:8px;align-items:center;font:700 13px/1 var(--text);background:var(--c);color:var(--on);padding:8px 12px;border-radius:999px}
+.brand{font:700 13px/1 var(--text);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin:18px 0 8px}
+h1{font-size:clamp(36px,4.2vw,54px)}
+.kind{font-size:19px;color:var(--ink-soft);margin:8px 0 0}
+.rate{display:flex;align-items:center;gap:10px;margin:16px 0 0;font:700 16px/1 var(--text)}
+.rate .stars{color:var(--star);letter-spacing:1px}
+.rate small{font-weight:600;color:var(--ink-soft)}
+.buy{background:#fff;border-radius:26px;padding:22px 24px;margin:22px 0 0;box-shadow:0 30px 60px -48px rgba(11,31,42,.5);border-top:6px solid var(--c)}
+.price{font:800 44px/1 var(--display);letter-spacing:-.03em;margin:0}
+.price small{display:block;font:600 14px/1.3 var(--text);color:var(--ink-soft);letter-spacing:0;margin-top:8px}
+.sold{display:inline-block;margin-top:12px;font:700 14px/1 var(--text);color:#0b7a3e;background:#e3f6ea;padding:8px 11px;border-radius:999px}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:58px;margin-top:16px;border-radius:999px;border:0;background:var(--ink);color:#fff;font:700 17px/1 var(--text);text-decoration:none;box-shadow:0 14px 30px -14px rgba(11,31,42,.6);transition:transform .25s var(--ease)}
+.btn:hover{transform:translateY(-2px)}
+.btn .arrow{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--c);color:var(--on)}
+.safe{font-size:14px;color:var(--ink-soft);margin:12px 0 0;text-align:center}
+.block{margin-top:30px}
+.block h2{font-size:26px;margin-bottom:10px}
+.block p{margin:0;color:#2f4652}
+.good{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.good li{display:flex;gap:10px}.good li::before{content:"✓";font-weight:800;color:var(--c);filter:brightness(.85)}
+.bars{display:grid;gap:8px;margin-top:6px}
+.bar{display:grid;grid-template-columns:34px 1fr 44px;gap:10px;align-items:center;font:600 14px/1 var(--text)}
+.bar i{display:block;height:10px;border-radius:10px;background:#e9eef0;overflow:hidden}
+.bar i b{display:block;height:100%;background:var(--star);border-radius:10px;width:0;transition:width 1.2s var(--ease)}
+.bars-note{font-size:13px;color:var(--ink-soft);margin-top:8px}
+.specs{width:100%;border-collapse:collapse;background:#fff;border-radius:18px;overflow:hidden}
+.specs th,.specs td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--line);font-size:16px}
+.specs th{color:var(--ink-soft);font-weight:600;width:42%}
+.watch{background:#fff7e0;border-radius:18px;padding:16px 18px}
+
+.rate{text-decoration:none}
+.deal{display:inline-block;background:#e1251b;color:#fff;font:800 13px/1 var(--text);letter-spacing:.06em;text-transform:uppercase;padding:7px 11px;border-radius:999px;margin-bottom:12px}
+.price s{font:600 20px/1 var(--text);color:#7a8f97;margin-left:10px;letter-spacing:0}
+.pmeta{margin:8px 0 0;font:600 14px/1.4 var(--text);color:var(--ink-soft)}
+.pmeta .save{color:#13804a;background:#e7f8ef;padding:3px 8px;border-radius:999px;margin-right:6px}
+.trustrow{list-style:none;display:flex;flex-wrap:wrap;gap:6px 16px;justify-content:center;padding:0;margin:14px 0 0;font:600 13px/1.2 var(--text);color:var(--ink-soft)}
+.trustrow li::before{content:"✓ ";color:#13804a;font-weight:800}
+.short{list-style:none;padding:0;margin:22px 0 0;display:grid;gap:10px}
+.short li{display:flex;gap:12px;align-items:center;font:600 16px/1.35 var(--text)}
+.short li::before{content:"✓";flex:none;width:28px;height:28px;border-radius:50%;background:#fff;color:var(--ink);box-shadow:inset 0 0 0 2px var(--c);display:grid;place-items:center;font-weight:800;font-size:14px}
+.pitchband{background:var(--tint);padding:clamp(40px,6vw,70px) 0;margin-top:10px}
+.eyebrow{font:700 13px/1 var(--text);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 14px}
+.pitch{font:700 clamp(22px,2.6vw,32px)/1.35 var(--display);letter-spacing:-.02em;margin:0;max-width:32ch;color:var(--ink)}
+.more{padding-bottom:40px}
+.sec{margin-top:clamp(50px,7vw,80px)}
+.sec h2{font-size:clamp(28px,3vw,38px);margin-bottom:22px}
+.how{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;counter-reset:h}
+.how li{counter-increment:h;background:#fff;border-radius:24px;padding:24px 22px;box-shadow:0 24px 50px -42px rgba(11,31,42,.5)}
+.how li::before{content:counter(h);display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:var(--ink);color:#fff;font:800 18px/1 var(--display);margin-bottom:14px}
+.how b{display:block;font:800 20px/1.2 var(--display);margin-bottom:6px}
+.how p{margin:0;color:#2f4652;font-size:16px}
+.fit{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.fit>div{border-radius:24px;padding:24px 24px 18px}
+.fit .yes{background:#eaf8f0}.fit .no{background:#fff;border:2px solid var(--line)}
+.fit h3{font:800 22px/1.2 var(--display);margin:0 0 12px}
+.fit ul{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.fit li{display:flex;gap:10px;font-size:16px;line-height:1.45}
+.fit .yes li::before{content:"✓";color:#13804a;font-weight:800}
+.fit .no li::before{content:"–";color:#7a8f97;font-weight:800}
+.revs{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(20px,4vw,48px);background:#fff;border-radius:30px;padding:clamp(22px,4vw,40px);box-shadow:0 30px 60px -50px rgba(11,31,42,.5)}
+.score b{display:block;font:800 64px/1 var(--display);letter-spacing:-.04em}
+.score .stars{color:var(--star);font-size:22px;letter-spacing:2px}
+.score small{display:block;color:var(--ink-soft);font-weight:600;margin:4px 0 16px}
+.say h2{margin-bottom:14px}
+.lbl{font:700 13px/1 var(--text);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:16px 0 10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{font:600 15px/1 var(--text);padding:10px 14px;border-radius:999px}
+.chips.plus span{background:#eaf8f0;color:#0f5f37}
+.chips.min span{background:#fff4e5;color:#8a5200}
+.src{font-size:13px;color:var(--ink-soft);margin:16px 0 0}
+.two{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(20px,4vw,40px);align-items:start}
+.alt{display:grid;grid-template-columns:150px 1fr auto;gap:22px;align-items:center;background:var(--ink);color:#fff;border-radius:30px;padding:22px 26px}
+.alt img{width:150px;height:150px;object-fit:contain;background:#fff;border-radius:20px;padding:10px}
+.alt .q{font:700 13px/1 var(--text);letter-spacing:.14em;text-transform:uppercase;color:#9fd8d2;margin:0 0 8px}
+.alt h3{font:800 26px/1.1 var(--display);margin:0 0 6px;color:#fff}
+.alt p{margin:0;color:#c8dde2}
+.alt .btn{width:auto;padding:0 22px;margin:0;background:#fff;color:var(--ink)}
+.allp{text-align:center;margin:28px 0 0}.allp a{font:700 16px/1 var(--text);color:var(--ink-soft)}
+.mbar{display:none}
+@media (max-width:900px){.how{grid-template-columns:1fr}.fit,.revs,.two{grid-template-columns:1fr}.alt{grid-template-columns:96px 1fr}.alt img{width:96px;height:96px}.alt .btn{grid-column:1/-1;width:100%}}
+@media (max-width:700px){.mbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:50;gap:12px;align-items:center;justify-content:space-between;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom));transform:translateY(110%);transition:transform .3s var(--ease)}
+ .mbar.on{transform:none}.mbar b{display:block;font:800 22px/1 var(--display)}.mbar small{display:block;font-size:12px;color:var(--ink-soft);margin-top:3px;max-width:42vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+ .mbar .btn{width:auto;min-height:48px;margin:0;padding:0 18px;font-size:15px}footer{padding-bottom:110px}}
+footer{background:var(--ink);color:#cfdde1;padding:44px 0 54px;font-size:15px}
+footer p{margin:0 0 10px;max-width:74ch}
+
+/* video */
+.vbox{position:relative;display:block;width:100%;max-width:860px;aspect-ratio:16/9;border:0;padding:0;border-radius:22px;overflow:hidden;background:#0d2633;cursor:pointer}
+.vbox img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.vbox:hover img{transform:scale(1.03)}
+.vbox video{width:100%;height:100%;object-fit:contain;background:#000;display:block}
+.vplay{position:absolute;left:50%;top:50%;width:78px;height:78px;margin:-39px 0 0 -39px;border-radius:50%;background:#ffc21a;box-shadow:0 14px 30px -10px rgba(0,0,0,.5)}
+.vplay::after{content:"";position:absolute;left:31px;top:24px;border-left:24px solid #0d2633;border-top:15px solid transparent;border-bottom:15px solid transparent}
+.vsrc{position:absolute;left:14px;bottom:14px;background:rgba(13,38,51,.85);color:#fff;font:700 13px/1 var(--text);padding:8px 12px;border-radius:999px}
+.vnote{font-size:12.5px;color:var(--ink-soft);margin:10px 0 0}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="index.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.5c.6 5.2 2.8 8 9 10.5-6.2 2.5-8.4 5.3-9 10.5-.6-5.2-2.8-8-9-10.5 6.2-2.5 8.4-5.3 9-10.5Z" fill="var(--c)"/></svg>glans</a>
+    <a class="back" href="index.html#route">← Alle producten</a>
+    <a class="ad" href="#affiliate">Bevat affiliate-links</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <p class="crumbs"><a href="index.html">Glans</a> › <span id="crumb"></span></p>
+  <div class="main">
+    <div class="gallery">
+      <div class="stage">
+        <div class="track" id="track"></div>
+        <button class="nav prev" id="prev" aria-label="Vorige foto">‹</button>
+        <button class="nav next" id="next" aria-label="Volgende foto">›</button>
+        <span class="count" id="count"></span>
+      </div>
+      <div class="thumbs" id="thumbs"></div>
+      <p class="photo-note">Productfoto's via bol.com</p>
+    </div>
+
+    <div>
+      <span class="badge" id="room"></span>
+      <p class="brand" id="brand"></p>
+      <h1 id="name"></h1>
+      <p class="kind" id="oneliner"></p>
+      <a class="rate" href="#reviews"><span class="stars" id="stars"></span><span id="rating"></span><small id="reviews"></small></a>
+
+      <div class="buy" id="buy">
+        <span class="deal" id="deal" hidden></span>
+        <p class="price" id="price"></p>
+        <p class="pmeta" id="pmeta"></p>
+        <span class="sold" id="sold"></span>
+        <a class="btn" id="cta" data-bol="" href="#">Bekijk en bestel op bol <span class="arrow">→</span></a>
+        <ul class="trustrow"><li>Bestellen en betalen bij bol</li><li>Retour en garantie via bol</li></ul>
+        <p class="safe"><small>Affiliate-link: wij krijgen een kleine vergoeding van bol, jij betaalt niets extra.</small></p>
+      </div>
+      <ul class="short" id="short"></ul>
+    </div>
+  </div>
+</main>
+
+<section class="pitchband"><div class="wrap"><p class="eyebrow">Waarom we hem kozen</p><p class="pitch" id="pitch"></p></div></section>
+
+<main class="wrap more">
+  <section class="sec">
+    <h2>Zo werkt hij</h2>
+    <ol class="how" id="how"></ol>
+  </section>
+
+  <section class="sec vid" id="vidsec" hidden>
+    <h2>Bekijk hem in actie</h2>
+    <button class="vbox" id="vbox" type="button" aria-label="Video afspelen"><img id="vimg" alt="" loading="lazy"><span class="vplay" aria-hidden="true"></span><span class="vsrc" id="vsrc"></span></button>
+    <p class="vnote">De productvideo zoals hij op bol staat.</p>
+  </section>
+
+
+  <section class="sec fit">
+    <div class="yes"><h3>Perfect als je…</h3><ul id="foryou"></ul></div>
+    <div class="no"><h3>Minder geschikt als…</h3><ul id="notfor"></ul></div>
+  </section>
+
+  <section class="sec revs" id="reviews">
+    <div class="score"><b id="bigrate"></b><span class="stars" id="bigstars"></span><small id="bigcount"></small><div class="bars" id="bars"></div><p class="bars-note" id="barsnote"></p></div>
+    <div class="say"><h2>Wat kopers zeggen</h2><p class="lbl">Kopers noemen vaak</p><div class="chips plus" id="love"></div><p class="lbl">Let wel op</p><div class="chips min" id="mind"></div><p class="src">Samengevat uit de reviews op bol.</p></div>
+  </section>
+
+  <section class="sec two">
+    <div><h2>Specificaties</h2><table class="specs"><tbody id="specs"></tbody></table></div>
+    <div><h2>Onze tip</h2><p class="watch" id="watch"></p></div>
+  </section>
+
+  <section class="sec alt" id="alt"></section>
+  <p class="allp"><a href="index.html#route">← Bekijk alle producten</a></p>
+</main>
+
+<div class="mbar" id="mbar"><div><b id="mprice"></b><small id="mname"></small></div><a class="btn" id="mcta" data-bol="" href="#">Bekijk op bol <span class="arrow">→</span></a></div>
+
+<footer id="affiliate"><div class="wrap">
+  <p><b>Affiliate-links:</b> de knoppen naar bol zijn affiliate-links. Koop je via zo'n link, dan krijgen wij een kleine vergoeding van bol. Jij betaalt niets extra.</p>
+  <p>Prijzen en reviews nagekeken op bol (de datum staat bij de prijs). Prijzen kunnen veranderen. Merknamen zijn van hun eigenaars; Glans is niet verbonden aan de merken.</p>
+  <p><a href="over.html" style="color:#fff">Over Glans</a> · <a href="over.html#contact" style="color:#fff">Contact</a> · <a href="privacy.html" style="color:#fff">Privacy, cookies &amp; disclaimer</a> · <a href="index.html#gratis" style="color:#fff">Gratis spiekbrief</a></p>
+</div></footer>
+
+<script type="module">
+import { PRODUCTS, euro, stars } from "./js/products.js";
+const id = new URLSearchParams(location.search).get("p");
+const first = Object.keys(PRODUCTS)[0];
+const p = PRODUCTS[id] || PRODUCTS[first], key = PRODUCTS[id] ? id : first;
+const $ = (s) => document.getElementById(s);
+const root = document.documentElement.style;
+root.setProperty("--c", p.color); root.setProperty("--tint", p.tint); root.setProperty("--on", p.on);
+document.title = `${p.brand} ${p.name} · Glans`;
+$("crumb").textContent = `${p.brand} ${p.name}`;
+$("room").textContent = (p.deal ? p.deal.label + " · " : "Veel gekocht · ") + p.room;
+$("brand").textContent = p.brand; $("name").textContent = p.name; $("oneliner").textContent = p.oneLiner || p.kind;
+$("stars").textContent = stars(p.rating); $("rating").textContent = p.rating.toString().replace(".", ",");
+$("reviews").textContent = "· " + p.reviews + " reviews op bol";
+const nice = (n) => euro(n).replace(",00", ",-");
+const price = nice(p.price);
+$("price").innerHTML = price + (p.deal ? "<s>" + nice(p.deal.was) + "</s>" : "");
+if (p.deal) { $("deal").hidden = false; $("deal").textContent = p.deal.label; }
+$("pmeta").innerHTML = (p.deal ? '<span class="save">Je bespaart ' + nice(p.deal.was - p.price) + "</span>" : (p.was ? p.was + " · " : "")) + "Prijs op bol, nagekeken op " + p.checked + " · Verkoop door " + p.seller;
+$("sold").textContent = p.sold;
+$("cta").dataset.bol = key; $("mcta").dataset.bol = key;
+$("short").innerHTML = p.good.slice(0, 3).map((g) => "<li>" + g + "</li>").join("");
+$("pitch").textContent = p.pitch;
+$("how").innerHTML = p.how.map(([t, d]) => "<li><b>" + t + "</b><p>" + d + "</p></li>").join("");
+$("foryou").innerHTML = p.forYou.map((x) => "<li>" + x + "</li>").join("");
+$("notfor").innerHTML = p.notFor.map((x) => "<li>" + x + "</li>").join("");
+$("love").innerHTML = p.love.map((x) => "<span>" + x + "</span>").join("");
+$("mind").innerHTML = p.mind.map((x) => "<span>" + x + "</span>").join("");
+$("specs").innerHTML = p.specs.map(([a, b]) => "<tr><th>" + a + "</th><td>" + b + "</td></tr>").join("");
+{ const w = p.watch.replace(/^Tip: /, ""); $("watch").textContent = w.charAt(0).toUpperCase() + w.slice(1); }
+$("bigrate").textContent = p.rating.toString().replace(".", ","); $("bigstars").textContent = stars(p.rating); $("bigcount").textContent = p.reviews + " reviews op bol";
+const total = Object.values(p.hist).reduce((a, b) => a + b, 0);
+$("bars").innerHTML = [5, 4, 3, 2, 1].map((s) => '<div class="bar"><span>' + s + ' ★</span><i><b data-w="' + (p.hist[s] / total * 100).toFixed(1) + '"></b></i><span>' + p.hist[s] + "</span></div>").join("");
+const good = Math.round((p.hist[5] + p.hist[4]) / total * 100);
+$("barsnote").textContent = good + "% van de kopers geeft 4 of 5 sterren.";
+requestAnimationFrame(() => setTimeout(() => document.querySelectorAll(".bar b").forEach((b) => (b.style.width = b.dataset.w + "%")), 200));
+const [ak, why] = p.alt || [], al = PRODUCTS[ak];
+if (al) $("alt").innerHTML = '<img src="media/bol/' + ak + '.webp" alt=""><div><p class="q">Twijfel je nog?</p><h3>' + al.brand + " " + al.name + "</h3><p>" + why + " · " + nice(al.price) + '</p></div><a class="btn" href="product.html?p=' + ak + '">Bekijk <span class="arrow">→</span></a>';
+$("mprice").textContent = price; $("mname").textContent = p.brand + " " + p.name;
+const buyBox = $("buy"), mbar = $("mbar");
+new IntersectionObserver(([e]) => mbar.classList.toggle("on", !e.isIntersecting && e.boundingClientRect.top < 0)).observe(buyBox);
+
+/* diashow: vegen, pijltjes, miniatuurtjes, en vanzelf verder tot je zelf iets aanraakt */
+
+/* productvideo van bol, laadt pas na klik */
+const VIDS = { karcher: "moEG29p8J7JEv", robot: "q158M6A7nrw0v", dyson: "Q4WkJ2Blg0B5v", motionflow: "Jpo4AXZxjJ62v" };
+if (VIDS[key]) {
+  const src = "https://media.s-bol.com/" + VIDS[key] + "/playlist.m3u8";
+  $("vidsec").hidden = false;
+  $("vimg").src = "media/video/bol-" + key + ".jpg";
+  $("vsrc").textContent = "Productvideo · bol";
+  $("vbox").addEventListener("click", () => {
+    const box = document.createElement("div"); box.className = "vbox";
+    const v = document.createElement("video"); v.controls = true; v.playsInline = true; v.autoplay = true; v.poster = $("vimg").src;
+    box.appendChild(v); $("vbox").replaceWith(box);
+    if (v.canPlayType("application/vnd.apple.mpegurl")) { v.src = src; v.play().catch(() => {}); return; }
+    const sc = document.createElement("script");
+    sc.src = "https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.5.13/hls.min.js";
+    sc.onload = () => { const h = new Hls(); h.loadSource(src); h.attachMedia(v); h.on(Hls.Events.MANIFEST_PARSED, () => v.play().catch(() => {})); };
+    document.head.appendChild(sc);
+  }, { once: true });
+}
+
+const track = $("track"), thumbs = $("thumbs");
+track.innerHTML = p.photos.map((n, i) => `<figure><img src="media/bol/${key}-${n}.webp" alt="${p.brand} ${p.name}, foto ${i + 1}" ${i ? 'loading="lazy"' : ""}></figure>`).join("");
+thumbs.innerHTML = p.photos.map((n, i) => `<button aria-label="Foto ${i + 1}"><img src="media/bol/${key}-${n}.webp" alt=""></button>`).join("");
+const slides = [...track.children], tb = [...thumbs.children];
+let cur = 0, auto = true;
+const go = (i, user) => { cur = (i + slides.length) % slides.length; track.scrollTo({ left: cur * track.clientWidth }); if (user) auto = false; mark(); };
+const mark = () => { tb.forEach((b, i) => b.classList.toggle("on", i === cur)); $("count").textContent = `${cur + 1} / ${slides.length}`; };
+track.addEventListener("scroll", () => { const i = Math.round(track.scrollLeft / track.clientWidth); if (i !== cur) { cur = i; mark(); } }, { passive: true });
+track.addEventListener("pointerdown", () => (auto = false));
+$("prev").onclick = () => go(cur - 1, true); $("next").onclick = () => go(cur + 1, true);
+tb.forEach((b, i) => (b.onclick = () => go(i, true)));
+mark();
+setInterval(() => { if (auto && !document.hidden) go(cur + 1); }, 3500);
+</script>
+<script type="module" src="js/bol.js"></script>
+</body>
+</html>
